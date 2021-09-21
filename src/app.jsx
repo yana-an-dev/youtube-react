@@ -1,16 +1,10 @@
 
 import './app.css'
-import { Header } from './components/index'
+import HeaderContainer from './containers/header';
+
 function App() {
   return (
-    <Header>
-      <Header.Logo>
-        <i class="fab fa-youtube"></i>
-      </Header.Logo>
-      <Header.Title>
-        YanaTube
-        </Header.Title>
-    </Header>
+    <HeaderContainer />
   );
 }
 
