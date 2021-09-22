@@ -2,3 +2,29 @@
   color: white;
   font-weight: 600;
 }
+
+
+
+.video-card{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  text-align: center;
+  padding-left: 0;
+  margin-left: 1em;
+}
+.video-thumbnail{
+  margin-left: 0;
+}
+.video-text{
+  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+}
+
+.text-channel-title{
+  color: gray;
+}
