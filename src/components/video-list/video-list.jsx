@@ -1,9 +1,10 @@
 import React from 'react'
 import VideoItem from '../video-item/video-item';
+import styles from './video-list.module.css'
 
 const VideoList = (props) => (
 
-    <ul>
+    <ul className={styles.videos}>
         {props.videos.map(video => (
             <VideoItem key={video.id} video={video} />
         ))}
@@ -14,14 +15,3 @@ const VideoList = (props) => (
 );
 
 export default VideoList;
-
-// <ul className="video-card">
-//             <img className="video-thumbnail" src={video.snippet.thumbnails.medium.url} alt="thumnails" />
-//             <div className="video-text">
-//                 <span className="text text-title">{video.snippet.title}</span>
-//                 <span className="text text-channel-title">{video.snippet.channelTitle}</span>
-
-//             </div>
-
-// </ul>
-
