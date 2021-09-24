@@ -1,4 +1,38 @@
-import styled from 'styled-components'
+
+.header{
+    background-color: black;
+    display: flex;
+    padding: 0.8em 1em;
+    height: 4rem;
+
+}
+.logo{
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+    color: white;
+}
+
+.img{
+    color: red;
+    font-size: 2rem;
+    margin-right: 0.2em;
+}
+.input{
+    flex-basis: 100%;
+    font-size: 1.8rem;
+    outline: 0;
+}
+.button{
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+}
+
+
+
+/* 
 
 export const Frame = styled.div`
     background-color: black;
@@ -25,4 +59,4 @@ export const SearchButton = styled.button`
     border: none;
     font-size: 1.5rem;
 
-`
+` */
