@@ -14,7 +14,7 @@ function App() {
       redirect: 'follow'
     }
 
-    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=AIzaSyDVurpLuofGfRPY-YLa67zIPMSfBiu1aGw`, requestOptions)
+    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=${query}&key=AIzaSyDVurpLuofGfRPY-YLa67zIPMSfBiu1aGw`, requestOptions)
       .then(response => response.json())
       .then(result => result.items.map(item => ({ ...item, id: item.id.videoId })))
       .then(items => setVideos(items))
