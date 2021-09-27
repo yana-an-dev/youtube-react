@@ -1,3 +1,18 @@
 .app{
   max-width: 80rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.content{
+ display: flex;
+
+}
+.detail{
+  flex: 1 1 70%;
+
+}
+
+.videolist{
+  flex: 1 1 30%;
 }

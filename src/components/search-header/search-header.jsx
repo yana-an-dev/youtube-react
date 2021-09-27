@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styles from './search-header.module.css'
 
-const SearchHeader = ({ onSearch }) => {
+const SearchHeader = ({ onSearch, onHomeClick }) => {
     const inputRef = useRef()
 
     const handleSearch = () => {
@@ -17,10 +17,13 @@ const SearchHeader = ({ onSearch }) => {
             handleSearch()
         }
     }
-
+    const logoClick = () => {
+        onHomeClick()
+    }
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>
+            <div className={styles.logo}
+                onClick={() => logoClick()}>
                 <img className={styles.img} src="images/logo.png" alt="logo" />
                 <h1 className={styles.title}>YanaTube</h1>
 
