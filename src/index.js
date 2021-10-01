@@ -5,7 +5,7 @@ import App from './app';
 import '@fortawesome/fontawesome-free/js/all.js'
 import Youtube from './service/youtube';
 
-const youtube = new Youtube(process.env.REACT_APP_YOUTUBE_API_KEY)
+const youtube = new Youtube(`../netlify/functions/youtubeUrl`)
 
 ReactDOM.render(
   <React.StrictMode>
