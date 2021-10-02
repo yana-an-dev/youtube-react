@@ -1,7 +1,6 @@
 const fetch = require("node-fetch");
 
 const key = process.env.REACT_APP_YOUTUBE_API_KEY
-const API_ENDPOINT = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${key}`;
 
 const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -15,6 +14,7 @@ exports.handler = async (event, context) => {
     switch (event.httpMethod) {
         case 'GET':
             console.log('GET request')
+            const API_ENDPOINT = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${key}`;
             try {
                 const response = await fetch(API_ENDPOINT, {
                     method: 'GET',
