@@ -22,7 +22,6 @@ exports.handler = async (event, context) => {
                     redirect: 'follow'
                 })
                 const result = await response.json()
-                console.log(result)
                 return { statusCode: 200, body: JSON.stringify(result.items), headers: corsHeaders };
             } catch (error) {
                 console.log(error);
