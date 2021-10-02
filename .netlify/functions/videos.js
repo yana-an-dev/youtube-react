@@ -14,13 +14,15 @@ exports.handler = async (event, context) => {
     switch (event.httpMethod) {
         case 'GET':
             console.log('GET request')
-            const API_ENDPOINT = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&type=video&q=${event.queryStringParameters.q}&maxResults=25&key=${key}`;
+            console.log(JSON.stringify(event.queryStringParameters))
+            const API_ENDPOINT = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${event.queryStringParameters.q}&maxResults=25&key=${key}`;
             try {
                 const response = await fetch(API_ENDPOINT, {
                     method: 'GET',
                     redirect: 'follow'
                 })
                 const result = await response.json()
+                console.log(result)
                 return { statusCode: 200, body: JSON.stringify(result.items), headers: corsHeaders };
             } catch (error) {
                 console.log(error);
