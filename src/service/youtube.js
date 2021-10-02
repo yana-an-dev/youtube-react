@@ -3,37 +3,24 @@ import axios from 'axios'
 class Youtube {
     constructor(key) {
         this.youtube = axios.create({
-            baseURL: `https://youtube.googleapis.com/youtube/v3`,
+            baseURL: `https://yanatube-react.netlify.app/.netlify/functions/`,
             params: { key: key },
         })
     }
 
     async mostPopular() {
-        const response = await this.youtube.get('videos', {
-            params: {
-                part: 'snippet',
-                chart: 'mostPopular',
-                maxResults: 25,
-            }
-        })
-        return response.data.items
-
+        const response = await this.youtube.get('mostPopular')
+        return response.data
     }
 
     async search(query) {
         const response = await this.youtube.get('videos', {
             params: {
-                part: 'snippet',
-                maxResults: 25,
-                type: 'video',
-                q: query,
-
+                q: query
             }
         })
-        return response.data.items.map((item => ({ ...item, id: item.id.videoId })))
-
+        return response.data.map((item => ({ ...item, id: item.id.videoId })))
     }
-
 }
 
 export default Youtube
