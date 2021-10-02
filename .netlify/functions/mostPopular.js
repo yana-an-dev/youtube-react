@@ -7,6 +7,7 @@ exports.handler = async (event, context) => {
 
     switch (event.httpMethod) {
         case 'GET':
+            console.log('GET request')
             try {
                 const response = await fetch(API_ENDPOINT, {
                     method: 'GET',
@@ -22,14 +23,17 @@ exports.handler = async (event, context) => {
                 };
             }
         case 'OPTIONS':
+            console.log('OPTIONS request')
             const headers = {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+                'Access-Control-Allow-Credentials': true
             };
             return {
                 statusCode: 200,
-                headers
+                headers,
+                body: 'preflight'
             };
     }
 
