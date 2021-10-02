@@ -10,7 +10,7 @@ const corsHeaders = {
 };
 
 exports.handler = async (event, context) => {
-
+    console.log(JSON.stringify(event))
     switch (event.httpMethod) {
         case 'GET':
             console.log('GET request')
