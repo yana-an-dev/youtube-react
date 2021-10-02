@@ -3,6 +3,13 @@ const fetch = require("node-fetch");
 const key = process.env.REACT_APP_YOUTUBE_API_KEY
 const API_ENDPOINT = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${key}`;
 
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    'Access-Control-Allow-Credentials': true
+};
+
 exports.handler = async (event, context) => {
 
     switch (event.httpMethod) {
@@ -14,25 +21,20 @@ exports.handler = async (event, context) => {
                     redirect: 'follow'
                 })
                 const result = await response.json()
-                return { statusCode: 200, body: JSON.stringify(result.items) };
+                return { statusCode: 200, body: JSON.stringify(result.items), headers: corsHeaders };
             } catch (error) {
                 console.log(error);
                 return {
                     statusCode: 500,
                     body: JSON.stringify({ error: 'Failed fetching data' }),
+                    headers: corsHeaders
                 };
             }
         case 'OPTIONS':
             console.log('OPTIONS request')
-            const headers = {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-                'Access-Control-Allow-Credentials': true
-            };
             return {
                 statusCode: 200,
-                headers,
+                headers: corsHeaders,
                 body: 'preflight'
             };
     }
