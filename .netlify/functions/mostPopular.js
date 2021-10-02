@@ -4,19 +4,33 @@ const key = process.env.REACT_APP_YOUTUBE_API_KEY
 const API_ENDPOINT = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${key}`;
 
 exports.handler = async (event, context) => {
-    const requestOption = {
-        method: 'GET',
-        redirect: 'follow'
+
+    switch (event.httpMethod) {
+        case 'GET':
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'GET',
+                    redirect: 'follow'
+                })
+                const result = await response.json()
+                return { statusCode: 200, body: JSON.stringify(result.items) };
+            } catch (error) {
+                console.log(error);
+                return {
+                    statusCode: 500,
+                    body: JSON.stringify({ error: 'Failed fetching data' }),
+                };
+            }
+        case 'OPTIONS':
+            const headers = {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+            };
+            return {
+                statusCode: 200,
+                headers
+            };
     }
-    try {
-        const response = await fetch(API_ENDPOINT, requestOption)
-        const result = await response.json()
-        return { statusCode: 200, body: JSON.stringify(result.items) };
-    } catch (error) {
-        console.log(error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: 'Failed fetching data' }),
-        };
-    }
+
 };

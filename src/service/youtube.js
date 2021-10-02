@@ -3,8 +3,7 @@ import axios from 'axios'
 class Youtube {
     constructor(key) {
         this.youtube = axios.create({
-            baseURL: `https://yanatube-react.netlify.app/.netlify/functions/`,
-            params: { key: key },
+            baseURL: `https://yanatube-react.netlify.app/.netlify/functions/`
         })
     }
 
